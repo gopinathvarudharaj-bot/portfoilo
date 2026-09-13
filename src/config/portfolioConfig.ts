@@ -32,9 +32,9 @@ export const personalInfo: PersonalInfo = {
   phone: '+91 63825 99927',
   whatsappNumber: '916382599927',
   whatsappDisplay: '+91 63825 99927',
-  linkedin: 'https://linkedin.com/in/gopinathvarudharaj',
-  github: 'https://github.com/gopinathvarudharaj',
-  instagram: 'https://instagram.com/gopinathvarudharaj',
+  linkedin: 'https://www.linkedin.com/in/gopinath-varutharaj-2b44493a7?utm_source=share_via&utm_content=profile&utm_medium=member_android',
+  github: 'https://github.com/gopinathvarudharaj-bot',
+  instagram: 'https://www.instagram.com/gopinath._27?stkn=eXgzMmpwZHdhZHd0',
   resumeUrl: '#resume',
   avatarUrl: '/gopinath_avatar.jpg',
   batchYears: '2024–2028'

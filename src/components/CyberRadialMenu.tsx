@@ -141,19 +141,19 @@ const navNodes: NavNode[] = [
 const socialLinks = [
   {
     name: 'LinkedIn',
-    href: 'https://linkedin.com/in/gopinathvarudharaj',
+    href: 'https://www.linkedin.com/in/gopinath-varutharaj-2b44493a7?utm_source=share_via&utm_content=profile&utm_medium=member_android',
     icon: Linkedin,
     ariaLabel: 'Connect with Gopinath on LinkedIn'
   },
   {
     name: 'GitHub',
-    href: 'https://github.com/gopinathvarudharaj',
+    href: 'https://github.com/gopinathvarudharaj-bot',
     icon: Github,
     ariaLabel: 'View Gopinath GitHub Profile'
   },
   {
     name: 'Instagram',
-    href: 'https://instagram.com/gopinathvarudharaj',
+    href: 'https://www.instagram.com/gopinath._27?stkn=eXgzMmpwZHdhZHd0',
     icon: Instagram,
     ariaLabel: 'Follow Gopinath on Instagram'
   },
@@ -165,7 +165,7 @@ const socialLinks = [
   },
   {
     name: 'WhatsApp',
-    href: 'https://wa.me/919345210892',
+    href: 'https://wa.me/916382599927',
     icon: WhatsAppIcon,
     ariaLabel: 'Message Gopinath on WhatsApp'
   }
