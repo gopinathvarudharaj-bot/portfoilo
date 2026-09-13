@@ -36,7 +36,7 @@ export const personalInfo: PersonalInfo = {
   github: 'https://github.com/gopinathvarudharaj',
   instagram: 'https://instagram.com/gopinathvarudharaj',
   resumeUrl: '#resume',
-  avatarUrl: '/image.png',
+  avatarUrl: '/gopinath_avatar.jpg',
   batchYears: '2024–2028'
 };
 
