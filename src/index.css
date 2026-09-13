@@ -1,0 +1,142 @@
+@import "tailwindcss";
+
+@theme {
+  --breakpoint-xs: 380px;
+  --breakpoint-3xl: 1920px;
+  --breakpoint-4k: 2560px;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow-x: hidden;
+    width: 100%;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background-color: #030708;
+    color: #f1f5f9;
+    overflow-x: hidden;
+    width: 100%;
+    min-width: 320px;
+  }
+}
+
+/* TV & Ultra-Wide Large Display Optimization */
+@media (min-width: 2560px) {
+  html {
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 3840px) {
+  html {
+    font-size: 22px;
+  }
+}
+
+/* Typography styles matching the high-impact cyber poster art */
+.font-display {
+  font-family: 'Syne', sans-serif;
+}
+
+.font-cyber {
+  font-family: 'Chakra Petch', monospace, sans-serif;
+}
+
+/* Cyber Perspective & Orthogonal Grids */
+.cyber-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(34, 197, 94, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(34, 197, 94, 0.08) 1px, transparent 1px);
+}
+
+.cyber-grid-dense {
+  background-size: 24px 24px;
+  background-image: 
+    linear-gradient(to right, rgba(34, 197, 94, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(34, 197, 94, 0.06) 1px, transparent 1px);
+}
+
+/* Neon Glows & Highlights */
+.text-neon-green {
+  color: #22c55e;
+  text-shadow: 0 0 20px rgba(34, 197, 94, 0.6), 0 0 40px rgba(34, 197, 94, 0.3);
+}
+
+.text-gradient-green {
+  background: linear-gradient(135deg, #4ade80 0%, #22c55e 50%, #16a34a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.glow-bg-green {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(140px);
+  pointer-events: none;
+  opacity: 0.22;
+  background: radial-gradient(circle, rgba(34, 197, 94, 1) 0%, rgba(22, 163, 74, 0.4) 40%, rgba(0, 0, 0, 0) 70%);
+}
+
+.shadow-neon-green {
+  box-shadow: 0 0 35px -5px rgba(34, 197, 94, 0.45);
+}
+
+.shadow-neon-green-sm {
+  box-shadow: 0 0 15px 0 rgba(34, 197, 94, 0.35);
+}
+
+/* Glassmorphic Cyber Cards */
+.glass-cyber-card {
+  background: rgba(10, 18, 12, 0.75);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(34, 197, 94, 0.22);
+}
+
+.glass-cyber-card:hover {
+  border-color: rgba(74, 222, 128, 0.5);
+  box-shadow: 0 12px 35px -10px rgba(34, 197, 94, 0.35);
+}
+
+/* Realistic Smartphone Mockup Frame */
+.phone-mockup {
+  background: linear-gradient(180deg, #09130c 0%, #030708 100%);
+  border: 2px solid rgba(34, 197, 94, 0.4);
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), 0 0 30px rgba(34, 197, 94, 0.2);
+  border-radius: 36px;
+  position: relative;
+  overflow: hidden;
+}
+
+.phone-island {
+  width: 90px;
+  height: 20px;
+  background-color: #000000;
+  border-radius: 20px;
+  margin: 10px auto 0;
+  position: relative;
+  z-index: 20;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #030708;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #14351d;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #22c55e;
+}
+
