@@ -46,7 +46,7 @@ export const CyberAboutMe: React.FC<CyberAboutMeProps> = ({
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const activeInfo = propPersonalInfo || personalInfo;
-  const currentAvatar = (activeInfo.avatarUrl && activeInfo.avatarUrl !== '/image.png') ? activeInfo.avatarUrl : '/gopinath_avatar.jpg';
+  const currentAvatar = (activeInfo.avatarUrl && activeInfo.avatarUrl !== '/image.png') ? activeInfo.avatarUrl : '/gopinath.jpg';
   const [imageError, setImageError] = useState(false);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {

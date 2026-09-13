@@ -45,7 +45,7 @@ export const CyberHero: React.FC<CyberHeroProps> = ({
   const [heroImgError, setHeroImgError] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const heroAvatar = (propPersonalInfo?.avatarUrl && propPersonalInfo.avatarUrl !== '/image.png') ? propPersonalInfo.avatarUrl : '/gopinath_avatar.jpg';
+  const heroAvatar = (propPersonalInfo?.avatarUrl && propPersonalInfo.avatarUrl !== '/image.png') ? propPersonalInfo.avatarUrl : '/gopinath.jpg';
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
