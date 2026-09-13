@@ -36,7 +36,7 @@ export const personalInfo: PersonalInfo = {
   github: 'https://github.com/gopinathvarudharaj-bot',
   instagram: 'https://www.instagram.com/gopinath._27?stkn=eXgzMmpwZHdhZHd0',
   resumeUrl: '#resume',
-  avatarUrl: '/gopinath_avatar.jpg',
+  avatarUrl: '/gopinath.jpg',
   batchYears: '2024–2028'
 };
 
