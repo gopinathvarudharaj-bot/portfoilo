@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { motion } from 'motion/react';
-import { personalInfo, education, certifications, softwareBadges, experiences, aboutPillars } from '../config/portfolioConfig';
+import { personalInfo, education, secondaryEducation, certifications, softwareBadges, experiences, aboutPillars } from '../config/portfolioConfig';
 import { PersonalInfo } from '../types';
 import {
   Mail,
@@ -123,12 +123,6 @@ export const CyberAboutMe: React.FC<CyberAboutMeProps> = ({
               transition={{ duration: 0.6 }}
               className="phone-mockup p-5 sm:p-6 text-slate-200"
             >
-              {/* Phone Dynamic Island */}
-              <div className="phone-island flex items-center justify-center gap-1">
-                <span className="w-2 h-2 rounded-full bg-emerald-400/80 animate-pulse"></span>
-                <span className="w-1.5 h-1.5 rounded-full bg-slate-700"></span>
-              </div>
-
               {/* Status Header */}
               <div className="flex items-center justify-between text-[10px] text-emerald-400/80 font-cyber mt-3 mb-4 pb-2 border-b border-emerald-500/20">
                 <span>PORTFOLIO_OS v2.0</span>
@@ -350,12 +344,6 @@ export const CyberAboutMe: React.FC<CyberAboutMeProps> = ({
               transition={{ duration: 0.6 }}
               className="phone-mockup p-5 sm:p-6 text-slate-200"
             >
-              {/* Phone Dynamic Island */}
-              <div className="phone-island flex items-center justify-center gap-1">
-                <span className="w-2 h-2 rounded-full bg-emerald-400/80 animate-pulse"></span>
-                <span className="w-1.5 h-1.5 rounded-full bg-slate-700"></span>
-              </div>
-
               {/* Status Header */}
               <div className="flex items-center justify-between text-[10px] text-emerald-400/80 font-cyber mt-3 mb-4 pb-2 border-b border-emerald-500/20">
                 <span>ACADEMIC_CREDENTIALS</span>
@@ -380,29 +368,11 @@ export const CyberAboutMe: React.FC<CyberAboutMeProps> = ({
 
                 <div className="p-2.5 rounded-xl bg-slate-900/90 border border-emerald-500/30">
                   <div className="flex items-center justify-between font-bold text-white mb-0.5">
-                    <span className="text-amber-300 flex items-center gap-1">
-                      <Award className="w-3.5 h-3.5" />
-                      AWS Cloud Practitioner
-                    </span>
-                    <span className="text-[10px] text-emerald-400 font-cyber">VERIFIED</span>
+                    <span>{secondaryEducation.degree}</span>
+                    <span className="text-[10px] text-emerald-400 font-cyber">{secondaryEducation.duration}</span>
                   </div>
-                  <p className="text-[10px] text-slate-400 font-mono">ID: 1213f1754e464440bd88172aa4e5fa01</p>
-                </div>
-
-                <div className="p-2.5 rounded-xl bg-slate-900/90 border border-emerald-500/30">
-                  <div className="flex items-center justify-between font-bold text-white mb-0.5">
-                    <span>Cyber Pentesting Intern</span>
-                    <span className="text-[10px] text-emerald-400 font-cyber">Pargavan Cyyber</span>
-                  </div>
-                  <p className="text-[10px] text-slate-300">Vulnerability Assessment, Wireshark, Burp Suite</p>
-                </div>
-
-                <div className="p-2.5 rounded-xl bg-slate-900/90 border border-emerald-500/30">
-                  <div className="flex items-center justify-between font-bold text-white mb-0.5">
-                    <span>Web Development Intern</span>
-                    <span className="text-[10px] text-emerald-400 font-cyber">Imagecon India</span>
-                  </div>
-                  <p className="text-[10px] text-slate-300">TeamTask Organizer App (ID: IMIN25082207)</p>
+                  <p className="text-[11px] text-slate-300 font-medium">{secondaryEducation.institution}</p>
+                  <p className="text-[10px] text-slate-400">{secondaryEducation.location}</p>
                 </div>
               </div>
 
@@ -417,51 +387,6 @@ export const CyberAboutMe: React.FC<CyberAboutMeProps> = ({
                 </button>
               </div>
             </motion.div>
-
-            {/* Phone Mockup 3 / Contact Card: "CONTACT ME" like screenshot */}
-            <div className="phone-mockup p-5 text-slate-200 border-emerald-500/50 shadow-neon-green-sm">
-              <h3 className="font-cyber text-xl font-black text-white uppercase tracking-tight mb-3 flex items-center gap-2">
-                CONTACT ME
-                <Send className="w-4 h-4 text-emerald-400" />
-              </h3>
-
-              <div className="space-y-2.5 text-xs">
-                <div className="flex items-center gap-2 p-2 rounded-lg bg-slate-900/80 border border-slate-800">
-                  <Mail className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                  <a href={`mailto:${personalInfo.email}`} className="text-slate-300 hover:text-emerald-400 truncate text-[11px]">
-                    {personalInfo.email}
-                  </a>
-                </div>
-
-                <div className="flex items-center gap-2 p-2 rounded-lg bg-slate-900/80 border border-slate-800">
-                  <Phone className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                  <a href={`tel:${personalInfo.phone}`} className="text-slate-300 hover:text-emerald-400 text-[11px]">
-                    {personalInfo.phone}
-                  </a>
-                </div>
-
-                <div className="flex items-center gap-2 p-2 rounded-lg bg-emerald-950/60 border border-emerald-500/40">
-                  <MessageSquare className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                  <a
-                    href={`https://wa.me/${personalInfo.whatsappNumber}?text=${encodeURIComponent('Hi Gopinath! I saw your cybersecurity and engineering portfolio and would like to connect.')}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-emerald-300 hover:underline font-bold text-[11px]"
-                  >
-                    Direct WhatsApp: {personalInfo.whatsappDisplay}
-                  </a>
-                </div>
-              </div>
-
-              <div className="mt-4 pt-3 border-t border-emerald-500/20">
-                <button
-                  onClick={onOpenContact}
-                  className="w-full py-2.5 px-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-cyber font-bold text-xs tracking-wider uppercase transition-colors shadow-neon-green-sm"
-                >
-                  Connect with Gopinath
-                </button>
-              </div>
-            </div>
 
           </div>
 

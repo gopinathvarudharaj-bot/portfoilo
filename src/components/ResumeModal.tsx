@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { personalInfo, education, certifications, experiences, personalProjects, skillCategories } from '../config/portfolioConfig';
+import { personalInfo, education, secondaryEducation, certifications, experiences, personalProjects, skillCategories } from '../config/portfolioConfig';
 import {
   X,
   Download,
@@ -155,21 +155,37 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
                   EDUCATION
                 </h2>
-                <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-900/60 border border-slate-800 print:bg-slate-50 print:border-slate-200">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-1">
-                    <h3 className="font-cyber font-bold text-sm sm:text-base text-white print:text-black">
-                      {education.degree} — {education.specialization}
-                    </h3>
-                    <span className="text-xs font-cyber text-emerald-400 print:text-emerald-700 font-bold">
-                      {education.duration}
-                    </span>
+                <div className="space-y-3">
+                  <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-900/60 border border-slate-800 print:bg-slate-50 print:border-slate-200">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-1">
+                      <h3 className="font-cyber font-bold text-sm sm:text-base text-white print:text-black">
+                        {education.degree} — {education.specialization}
+                      </h3>
+                      <span className="text-xs font-cyber text-emerald-400 print:text-emerald-700 font-bold">
+                        {education.duration}
+                      </span>
+                    </div>
+                    <p className="text-xs text-slate-300 print:text-slate-700 font-medium">
+                      {education.institution}, {education.location}
+                    </p>
+                    <p className="text-[11px] text-slate-400 print:text-slate-600 mt-2">
+                      <span className="font-semibold text-slate-300">Key Subjects:</span> {education.coursework.join(', ')}
+                    </p>
                   </div>
-                  <p className="text-xs text-slate-300 print:text-slate-700 font-medium">
-                    {education.institution}, {education.location}
-                  </p>
-                  <p className="text-[11px] text-slate-400 print:text-slate-600 mt-2">
-                    <span className="font-semibold text-slate-300">Key Subjects:</span> {education.coursework.join(', ')}
-                  </p>
+
+                  <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-slate-900/60 border border-slate-800 print:bg-slate-50 print:border-slate-200">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-1">
+                      <h3 className="font-cyber font-bold text-sm sm:text-base text-white print:text-black">
+                        {secondaryEducation.degree} — {secondaryEducation.specialization}
+                      </h3>
+                      <span className="text-xs font-cyber text-emerald-400 print:text-emerald-700 font-bold">
+                        {secondaryEducation.duration}
+                      </span>
+                    </div>
+                    <p className="text-xs text-slate-300 print:text-slate-700 font-medium">
+                      {secondaryEducation.institution}, {secondaryEducation.location}
+                    </p>
+                  </div>
                 </div>
               </div>
 
@@ -193,16 +209,6 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
                           {cert.duration || cert.issueDate}
                         </span>
                       </div>
-                      {cert.validationNumber && (
-                        <p className="text-[10px] text-emerald-400/90 print:text-emerald-800 font-mono">
-                          Verification ID: {cert.validationNumber} (Active to {cert.expiryDate})
-                        </p>
-                      )}
-                      {cert.internshipId && (
-                        <p className="text-[10px] text-slate-400 print:text-slate-600 font-mono">
-                          Certificate ID: {cert.internshipId}
-                        </p>
-                      )}
                       <ul className="list-disc list-inside mt-1.5 space-y-0.5 text-[11px] text-slate-300 print:text-slate-700">
                         {cert.highlights.map((h, i) => (
                           <li key={i}>{h}</li>

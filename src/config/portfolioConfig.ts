@@ -89,6 +89,14 @@ export const education: EducationItem = {
   ]
 };
 
+export const secondaryEducation = {
+  degree: 'Secondary School Education',
+  specialization: 'HSC (High School)',
+  institution: 'Government Higher Secondary School',
+  location: 'Muthugapatti, Tamil Nadu',
+  duration: '2022 – 2024'
+};
+
 // Distinctive Software / Tool Badges styled in the exact aesthetic of the uploaded poster screenshot (Ps, Ai, Id style)
 export const softwareBadges: SoftwareBadge[] = [
   { id: 're', code: 'Re', name: 'React.js', category: 'Frontend', bgGradient: 'from-cyan-950 to-blue-900 border-cyan-500/50', textColor: 'text-cyan-400', level: 'Proficient' },

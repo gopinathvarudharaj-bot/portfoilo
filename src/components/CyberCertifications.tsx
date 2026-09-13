@@ -96,38 +96,6 @@ export const CyberCertifications: React.FC<CyberCertificationsProps> = ({ onOpen
                   </p>
                 </div>
 
-                {/* Verification IDs */}
-                {cert.validationNumber && (
-                  <div className="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 text-[11px] font-mono flex items-center justify-between">
-                    <div className="truncate mr-2">
-                      <span className="text-slate-500 text-[9px] block">VALIDATION ID:</span>
-                      <span className="text-slate-200 truncate">{cert.validationNumber}</span>
-                    </div>
-                    <button
-                      onClick={() => handleCopy(cert.validationNumber!, cert.id)}
-                      className="p-1 rounded text-slate-400 hover:text-emerald-400 transition-colors"
-                      title="Copy Validation ID"
-                    >
-                      {copiedId === cert.id ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
-                    </button>
-                  </div>
-                )}
-
-                {cert.internshipId && (
-                  <div className="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 text-[11px] font-mono flex items-center justify-between">
-                    <div>
-                      <span className="text-slate-500 text-[9px] block">INTERNSHIP ID:</span>
-                      <span className="text-slate-200">{cert.internshipId}</span>
-                    </div>
-                    <button
-                      onClick={() => handleCopy(cert.internshipId!, cert.id)}
-                      className="p-1 rounded text-slate-400 hover:text-emerald-400 transition-colors"
-                    >
-                      {copiedId === cert.id ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
-                    </button>
-                  </div>
-                )}
-
                 {/* Highlights */}
                 <div className="space-y-2 pt-2 border-t border-emerald-500/10">
                   {cert.highlights.map((h, i) => (
