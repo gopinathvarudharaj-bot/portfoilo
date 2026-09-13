@@ -24,8 +24,6 @@ import {
   ShieldAlert,
   Compass,
   Fingerprint,
-  Camera,
-  Upload,
   UserCheck
 } from 'lucide-react';
 
@@ -45,45 +43,24 @@ export const CyberAboutMe: React.FC<CyberAboutMeProps> = ({
   const [copied, setCopied] = useState(false);
   const [activeBadge, setActiveBadge] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<'origin' | 'security' | 'philosophy' | 'future'>('origin');
-
-  // Avatar state with persistence and local file drop support
-  const activeInfo = propPersonalInfo || personalInfo;
-  const [currentAvatar, setCurrentAvatar] = useState<string>(() => {
-    return localStorage.getItem('portfolio_avatar') || activeInfo.avatarUrl || '/image.png';
-  });
-  const [imageError, setImageError] = useState(false);
-  const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const handleProcessFile = (file: File) => {
-    if (!file.type.startsWith('image/')) return;
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const result = e.target?.result as string;
-      if (result) {
-        setCurrentAvatar(result);
-        setImageError(false);
-        try {
-          localStorage.setItem('portfolio_avatar', result);
-        } catch (err) {
-          console.warn('LocalStorage quota exceeded for image, caching in memory:', err);
-        }
-        onUpdateAvatar?.(result);
-      }
-    };
-    reader.readAsDataURL(file);
-  };
+  const activeInfo = propPersonalInfo || personalInfo;
+  const currentAvatar = (activeInfo.avatarUrl && activeInfo.avatarUrl !== '/image.png') ? activeInfo.avatarUrl : '/gopinath_avatar.jpg';
+  const [imageError, setImageError] = useState(false);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (file) handleProcessFile(file);
-  };
-
-  const handleDrop = (e: React.DragEvent) => {
-    e.preventDefault();
-    setIsDragging(false);
-    const file = e.dataTransfer.files?.[0];
-    if (file) handleProcessFile(file);
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const result = reader.result as string;
+        if (result && onUpdateAvatar) {
+          onUpdateAvatar(result);
+        }
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   const handleCopyEmail = () => {
@@ -252,66 +229,84 @@ export const CyberAboutMe: React.FC<CyberAboutMeProps> = ({
               </svg>
             </div>
 
-            {/* Developer Portrait in Gaming/Tech Setup - Matches User Card */}
-            <div
-              onDragOver={(e) => {
-                e.preventDefault();
-                setIsDragging(true);
-              }}
-              onDragLeave={() => setIsDragging(false)}
-              onDrop={handleDrop}
-              className={`relative z-10 w-64 sm:w-72 aspect-[4/5] rounded-[30px] overflow-hidden border-2 transition-all duration-300 shadow-neon-green bg-gradient-to-b from-slate-900 via-slate-950 to-black -translate-y-2.5 sm:-translate-y-4 ${
-                isDragging
-                  ? 'border-emerald-400 scale-105 ring-4 ring-emerald-500/40'
-                  : 'border-emerald-500/60 hover:border-emerald-400'
-              }`}
-            >
-              {/* Hidden File Picker Input */}
-              <input
-                ref={fileInputRef}
-                type="file"
-                accept="image/*"
-                className="hidden"
-                onChange={handleFileChange}
-              />
-
-              {/* Photo Display View */}
+            {/* Developer Cybernetic Portrait Card - Permanent Display */}
+            <div className="relative z-10 w-64 sm:w-72 aspect-[4/5] rounded-[30px] overflow-hidden border-2 border-emerald-500/60 shadow-neon-green bg-gradient-to-b from-slate-900 via-slate-950 to-black -translate-y-2.5 sm:-translate-y-4 select-none">
+              
+              {/* Photo Display View if valid custom avatar is provided */}
               {currentAvatar && !imageError ? (
-                <div className="relative w-full h-full group overflow-hidden">
+                <div className="relative w-full h-full overflow-hidden">
                   <img
                     src={currentAvatar}
                     alt="Gopinath V — Full-Stack Developer & Cybersecurity Student"
                     referrerPolicy="no-referrer"
                     onError={() => setImageError(true)}
-                    className="w-full h-full object-cover object-top -translate-y-3 sm:-translate-y-3.5 scale-[1.06] filter contrast-105 brightness-100 transition-all duration-300 group-hover:brightness-95"
+                    className="w-full h-full object-cover object-top -translate-y-3 sm:-translate-y-3.5 scale-[1.06] filter contrast-105 brightness-100"
                   />
-
                   {/* Scanline overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent pointer-events-none"></div>
-                  
                   {/* Subtle Grid / HUD overlay */}
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_40%,rgba(0,0,0,0.4)_100%)] pointer-events-none"></div>
                 </div>
               ) : (
-                /* Cyber Silhouette Fallback & Dropzone */
-                <div
-                  onClick={() => fileInputRef.current?.click()}
-                  className="w-full h-full flex flex-col items-center justify-center p-6 text-center cursor-pointer hover:bg-emerald-950/20 transition-all select-none group"
-                  title="Click or drag & drop your photo here"
-                >
-                  {/* Stylized Cyber Icon matching Gopinath's Look */}
-                  <div className="relative mb-3">
-                    <div className="w-20 h-20 rounded-full bg-emerald-950/80 border border-emerald-500/50 flex items-center justify-center text-emerald-400 group-hover:scale-110 group-hover:border-emerald-400 transition-transform">
-                      <Camera className="w-8 h-8 text-emerald-400 animate-pulse" />
+                /* Permanent Futuristic Cybernetic Operative HUD Display */
+                <div className="relative w-full h-full flex flex-col items-center justify-between p-4 bg-gradient-to-b from-slate-950 via-emerald-950/20 to-black overflow-hidden">
+                  
+                  {/* Background Cyber Grid & Radar Rings */}
+                  <div className="absolute inset-0 bg-[linear-gradient(to_right,#05966910_1px,transparent_1px),linear-gradient(to_bottom,#05966910_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none opacity-60"></div>
+                  <div className="absolute -top-10 -right-10 w-44 h-44 rounded-full border border-emerald-500/20 border-dashed animate-spin-slow pointer-events-none"></div>
+                  <div className="absolute -bottom-10 -left-10 w-44 h-44 rounded-full border border-emerald-500/15 pointer-events-none"></div>
+
+                  {/* Top HUD Telemetry Bar */}
+                  <div className="relative z-10 w-full flex items-center justify-between text-[9px] font-cyber text-emerald-400 border-b border-emerald-500/20 pb-1.5 px-1">
+                    <div className="flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+                      <span className="font-bold tracking-wider">OPERATIVE // GV-01</span>
                     </div>
-                    <div className="absolute -bottom-1 -right-1 p-1 rounded-full bg-black border border-emerald-500/60 text-emerald-400">
-                      <Upload className="w-3 h-3" />
+                    <span className="text-slate-400 font-mono">SECTOR // KSR</span>
+                  </div>
+
+                  {/* Central Cybernetic Hacker Silhouette Vector */}
+                  <div className="relative z-10 my-auto flex flex-col items-center justify-center">
+                    <div className="relative w-36 h-36 flex items-center justify-center">
+                      
+                      {/* Outer targeting brackets */}
+                      <div className="absolute inset-0 border border-emerald-500/30 rounded-full animate-pulse"></div>
+                      <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-emerald-400"></div>
+                      <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-emerald-400"></div>
+                      <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-emerald-400"></div>
+                      <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-emerald-400"></div>
+
+                      {/* Stylized Cyber Operative Avatar SVG */}
+                      <svg className="w-28 h-28" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        {/* Glowing Visor Aura */}
+                        <circle cx="50" cy="40" r="26" fill="#022c22" stroke="#10b981" strokeWidth="1.5" />
+                        {/* Hood / Shroud */}
+                        <path d="M22 88 C22 62, 32 50, 50 50 C68 50, 78 62, 78 88 Z" fill="#064e3b" stroke="#34d399" strokeWidth="1.5" />
+                        {/* High-tech Visor Screen */}
+                        <rect x="36" y="36" width="28" height="8" rx="3" fill="#22c55e" className="animate-pulse" />
+                        <line x1="38" y1="40" x2="62" y2="40" stroke="#000" strokeWidth="1" strokeDasharray="2 2" />
+                        {/* Neck / Collar cyber cables */}
+                        <line x1="44" y1="56" x2="44" y2="70" stroke="#10b981" strokeWidth="1.5" />
+                        <line x1="50" y1="56" x2="50" y2="74" stroke="#34d399" strokeWidth="2" />
+                        <line x1="56" y1="56" x2="56" y2="70" stroke="#10b981" strokeWidth="1.5" />
+                        {/* Binary / Hex accents */}
+                        <circle cx="50" cy="50" r="38" stroke="#22c55e" strokeWidth="0.75" strokeDasharray="3 3" opacity="0.4" />
+                      </svg>
+                    </div>
+
+                    <div className="mt-1 flex items-center gap-1.5 text-[10px] font-cyber text-slate-300">
+                      <Fingerprint className="w-3.5 h-3.5 text-emerald-400" />
+                      <span className="tracking-wider">BIOMETRIC ENCRYPTED</span>
                     </div>
                   </div>
+
+                  {/* Scanline Sweep Animation Effect */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-emerald-400/5 to-transparent animate-pulse pointer-events-none"></div>
+
                 </div>
               )}
 
-              {/* Verified Badge Overlay at bottom of card — Exact Screenshot Match */}
+              {/* Verified Badge Overlay at bottom of card */}
               <div className="absolute bottom-3 left-3 right-3 bg-black/90 backdrop-blur-md border border-emerald-500/50 rounded-2xl px-3.5 py-2.5 text-left z-20 pointer-events-none shadow-lg">
                 <span className="text-[10px] text-emerald-400 font-cyber font-bold block uppercase tracking-wider">
                   CYBER SECURITY UNDERGRAD

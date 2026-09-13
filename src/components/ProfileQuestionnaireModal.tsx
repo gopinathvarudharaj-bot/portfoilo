@@ -16,8 +16,7 @@ import {
   Share2,
   RefreshCw,
   ExternalLink,
-  Camera,
-  Upload
+  Camera
 } from 'lucide-react';
 
 interface ProfileQuestionnaireModalProps {
@@ -249,49 +248,19 @@ Batch: 2024–2028 (K.S.R College of Engineering - B.E. CSE Cyber Security)
 
                 <div>
                   <label className="block text-xs font-cyber text-slate-300 uppercase tracking-wider mb-1.5">
-                    Profile Photo / Portfolio Image
+                    Profile Photo URL (Optional)
                   </label>
-                  <div className="space-y-2">
-                    <div className="flex items-center gap-2">
-                      <label className="flex-1 cursor-pointer flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-950/60 border border-emerald-500/50 hover:border-emerald-400 text-xs font-cyber text-emerald-300 hover:text-emerald-200 transition-colors shadow-neon-green-sm">
-                        <Upload className="w-3.5 h-3.5" />
-                        <span>UPLOAD PHOTO FILE (PNG / JPG)</span>
-                        <input
-                          type="file"
-                          accept="image/*"
-                          className="hidden"
-                          onChange={(e) => {
-                            const file = e.target.files?.[0];
-                            if (file) {
-                              const reader = new FileReader();
-                              reader.onload = (ev) => {
-                                const res = ev.target?.result as string;
-                                if (res) {
-                                  setFormData({ ...formData, avatarUrl: res });
-                                }
-                              };
-                              reader.readAsDataURL(file);
-                            }
-                          }}
-                        />
-                      </label>
-                      {formData.avatarUrl && (
-                        <button
-                          type="button"
-                          onClick={() => setFormData({ ...formData, avatarUrl: '' })}
-                          className="px-3 py-2.5 rounded-xl bg-red-950/40 border border-red-500/30 text-xs text-red-400 hover:text-red-300"
-                        >
-                          Clear
-                        </button>
-                      )}
-                    </div>
+                  <div className="space-y-1.5">
                     <input
                       type="text"
                       value={formData.avatarUrl}
                       onChange={(e) => setFormData({ ...formData, avatarUrl: e.target.value })}
                       className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-xs focus:border-emerald-500 focus:outline-none"
-                      placeholder="Or enter image URL (e.g. /image.png or https://...)"
+                      placeholder="Optional image URL (e.g. https://... or leave blank for default cyber operative portrait)"
                     />
+                    <p className="text-[10px] text-slate-400 font-mono">
+                      Leave blank to display the futuristic cybernetic operative vector portrait.
+                    </p>
                   </div>
                 </div>
               </div>

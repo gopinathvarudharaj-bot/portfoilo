@@ -17,28 +17,23 @@ import { CyberWhatsAppWidget } from './components/CyberWhatsAppWidget';
 
 export default function App() {
   const [personalData, setPersonalData] = useState<PersonalInfo>(() => {
-    const savedAvatar = typeof window !== 'undefined' ? localStorage.getItem('portfolio_avatar') : null;
-    if (savedAvatar) {
-      return { ...initialPersonalInfo, avatarUrl: savedAvatar };
-    }
-    return initialPersonalInfo;
+    const saved = typeof window !== 'undefined' ? localStorage.getItem('portfolio_avatar') : null;
+    return saved ? { ...initialPersonalInfo, avatarUrl: saved } : initialPersonalInfo;
   });
   const [questionnaireOpen, setQuestionnaireOpen] = useState(false);
   const [resumeOpen, setResumeOpen] = useState(false);
   const [promptModalOpen, setPromptModalOpen] = useState(false);
 
   const handleUpdateInfo = (updated: Partial<PersonalInfo>) => {
-    setPersonalData(prev => ({
-      ...prev,
-      ...updated
-    }));
-    if (updated.avatarUrl) {
-      try {
-        localStorage.setItem('portfolio_avatar', updated.avatarUrl);
-      } catch (e) {
-        console.warn('Could not persist avatar to localStorage:', e);
+    setPersonalData(prev => {
+      const next = { ...prev, ...updated };
+      if (updated.avatarUrl) {
+        try {
+          localStorage.setItem('portfolio_avatar', updated.avatarUrl);
+        } catch (e) {}
       }
-    }
+      return next;
+    });
   };
 
   const handleAvatarUpdate = (newAvatarUrl: string) => {
@@ -79,6 +74,7 @@ export default function App() {
           onViewProjects={() => scrollToSection('#projects')}
           onOpenPromptModal={() => setPromptModalOpen(true)}
           personalInfo={personalData}
+          onUpdateAvatar={handleAvatarUpdate}
         />
 
         {/* 2. Featured Section: ABOUT ME with 3D Phone Mockups & Software Badges matching image */}

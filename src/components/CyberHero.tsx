@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion } from 'motion/react';
 import { personalInfo } from '../config/portfolioConfig';
 import { PersonalInfo } from '../types';
@@ -18,7 +18,8 @@ import {
   Database,
   Smartphone,
   Globe,
-  CheckCircle2
+  CheckCircle2,
+  UserCheck
 } from 'lucide-react';
 
 interface CyberHeroProps {
@@ -28,6 +29,7 @@ interface CyberHeroProps {
   onViewProjects: () => void;
   onOpenPromptModal?: () => void;
   personalInfo?: PersonalInfo;
+  onUpdateAvatar?: (avatarUrl: string) => void;
 }
 
 export const CyberHero: React.FC<CyberHeroProps> = ({
@@ -36,12 +38,28 @@ export const CyberHero: React.FC<CyberHeroProps> = ({
   onOpenQuestionnaire,
   onViewProjects,
   onOpenPromptModal,
-  personalInfo: propPersonalInfo
+  personalInfo: propPersonalInfo,
+  onUpdateAvatar
 }) => {
   const [activeTool, setActiveTool] = useState<'terminal' | 'shield' | 'code' | 'ai' | 'avatar'>('avatar');
   const [heroImgError, setHeroImgError] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const heroAvatar = localStorage.getItem('portfolio_avatar') || propPersonalInfo?.avatarUrl || personalInfo.avatarUrl || '/image.png';
+  const heroAvatar = (propPersonalInfo?.avatarUrl && propPersonalInfo.avatarUrl !== '/image.png') ? propPersonalInfo.avatarUrl : '/gopinath_avatar.jpg';
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const result = reader.result as string;
+        if (result && onUpdateAvatar) {
+          onUpdateAvatar(result);
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   return (
     <section id="home" className="relative pt-24 pb-16 md:pt-28 md:pb-24 bg-black cyber-grid overflow-hidden">
@@ -50,29 +68,6 @@ export const CyberHero: React.FC<CyberHeroProps> = ({
       <div className="glow-bg-green bottom-0 right-10 w-[450px] h-[450px] opacity-15"></div>
 
       <div className="max-w-7xl 2xl:max-w-[1550px] 3xl:max-w-[1800px] mx-auto px-3 sm:px-6 lg:px-8 2xl:px-12 relative z-10">
-        
-        {/* Top Header Editorial Bar */}
-        <div className="flex flex-wrap items-center justify-between gap-3 pb-5 mb-5 sm:pb-6 sm:mb-6 border-b border-emerald-500/20 text-xs tracking-wider">
-          <div className="flex items-center gap-2 text-emerald-400 font-cyber font-semibold">
-            {/* Geometric Cyber Emblem */}
-            <div className="w-6 h-6 rounded-md bg-emerald-500/10 border border-emerald-400/50 flex items-center justify-center text-emerald-400 text-[10px] font-bold">
-              GV
-            </div>
-            <span className="tracking-widest text-white uppercase">{personalInfo.name}</span>
-            <span className="text-emerald-500/50">|</span>
-            <span className="text-slate-400 hidden sm:inline text-[11px] font-mono">CYBER SECURITY & SOFTWARE DEVELOPER</span>
-          </div>
-
-          <div className="flex items-center gap-2 sm:gap-3">
-            <span className="hidden md:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-950/60 border border-emerald-500/40 text-[11px] text-emerald-300 font-cyber">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-              K.S.R. COLLEGE OF ENGINEERING
-            </span>
-            <span className="px-2.5 py-1 rounded-lg bg-emerald-500/10 border border-emerald-400/40 text-emerald-400 font-cyber font-bold tracking-wider text-xs uppercase">
-              III YEAR / V SEM
-            </span>
-          </div>
-        </div>
 
         {/* Hero Section Canvas */}
         <div className="relative text-center my-3 py-3 sm:my-4 sm:py-6 md:py-8 2xl:py-12 select-none">
