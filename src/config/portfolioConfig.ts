@@ -322,7 +322,7 @@ export const certifications: Certification[] = [
     issuer: 'Pargavan Cyyber Solutions',
     type: 'Cybersecurity Internship',
     issueDate: 'July 10, 2026',
-    duration: 'June 23 – July 10, 2026 (15 Days)',
+    duration: 'June 23 – July 10, 2026',
     badgeIcon: 'ShieldCheck',
     highlights: [
       'Practical training in Cybersecurity Fundamentals & Network Penetration Testing',

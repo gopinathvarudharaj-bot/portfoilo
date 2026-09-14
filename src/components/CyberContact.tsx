@@ -101,14 +101,6 @@ export const CyberContact: React.FC = () => {
                   </button>
                 </div>
 
-                {/* Phone item */}
-                <div className="p-3.5 rounded-2xl bg-slate-900/80 border border-slate-800 flex items-center gap-3">
-                  <Phone className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <a href={`tel:${personalInfo.phone}`} className="text-slate-300 hover:text-emerald-400 text-xs font-mono">
-                    {personalInfo.phone}
-                  </a>
-                </div>
-
                 {/* Direct WhatsApp Action Button */}
                 <div className="p-3.5 rounded-2xl bg-emerald-950/60 border border-emerald-500/40 flex items-center justify-between">
                   <div className="flex items-center gap-3">
@@ -117,8 +109,8 @@ export const CyberContact: React.FC = () => {
                       <span className="text-xs font-cyber font-bold text-emerald-300 block">
                         WhatsApp Fast Link
                       </span>
-                      <span className="text-[10px] text-slate-400 font-mono">
-                        {personalInfo.whatsappDisplay}
+                      <span className="text-[10px] text-slate-400">
+                        Click to start instant secure chat
                       </span>
                     </div>
                   </div>

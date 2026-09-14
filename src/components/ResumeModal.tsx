@@ -16,7 +16,8 @@ import {
   Linkedin,
   Github,
   FileText,
-  ShieldCheck
+  ShieldCheck,
+  MessageSquare
 } from 'lucide-react';
 
 interface ResumeModalProps {
@@ -138,8 +139,15 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
                       </a>
                     </div>
                     <div className="flex items-center gap-2">
-                      <Phone className="w-3.5 h-3.5 text-emerald-400 print:text-emerald-600 flex-shrink-0" />
-                      <span>{personalInfo.phone}</span>
+                      <MessageSquare className="w-3.5 h-3.5 text-emerald-400 print:text-emerald-600 flex-shrink-0" />
+                      <a
+                        href={`https://wa.me/${personalInfo.whatsappNumber}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-emerald-400 transition-colors"
+                      >
+                        WhatsApp Fast Link
+                      </a>
                     </div>
                     <div className="flex items-center gap-2">
                       <MapPin className="w-3.5 h-3.5 text-emerald-400 print:text-emerald-600 flex-shrink-0" />
